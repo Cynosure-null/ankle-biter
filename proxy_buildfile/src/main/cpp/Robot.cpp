@@ -4,8 +4,9 @@
 
 #include "Robot.h"
 
-
 #include <frc2/command/CommandScheduler.h>
+
+void Robot::RobotInit() {}
 
 /**
  * This function is called every 20 ms, no matter the mode. Use
@@ -33,9 +34,6 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
-  m_odometry.update();
-  m_drivetrain.flip();
- 
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
   if (m_autonomousCommand) {
@@ -53,7 +51,6 @@ void Robot::TeleopInit() {
   if (m_autonomousCommand) {
     m_autonomousCommand->Cancel();
   }
-  m_odometry.update();
 }
 
 /**
@@ -76,49 +73,8 @@ void Robot::SimulationInit() {}
  */
 void Robot::SimulationPeriodic() {}
 
-
-/////////////////////
-
-/******************************************************************/
-/*                        Private Variables                       */
-/******************************************************************/
-
-
-void Robot::RobotInit()
-{
-  // Call the inits for all subsystems here
-  m_drivetrain.init();
-  m_odometry.putField2d();
-
-  // Auto paths
-
-  frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
-
-  m_odometry.putField2d();
-
-
-  // Get choosen autonomous mode
-}
-
-  void Robot::swerveDrive(bool const &field_relative)
-{
-  const units::meters_per_second_t left_right { -frc::ApplyDeadband(BUTTON::DRIVETRAIN::LX(), CONSTANTS::DEADBAND)};
-                          
-  const units::meters_per_second_t front_back { -frc::ApplyDeadband(BUTTON::DRIVETRAIN::LY(), CONSTANTS::DEADBAND)};
-  auto const rot = frc::ApplyDeadband(BUTTON::DRIVETRAIN::RX(), CONSTANTS::DEADBAND) * (CONSTANTS::DRIVE::TELEOP_MAX_ANGULAR_SPEED);
-
-    m_drivetrain.drive(front_back, -left_right, rot, field_relative);
-
-    // frc::SmartDashboard::PutNumber("Gyro: ", m_drivetrain.getAngle().value());
-    // frc::SmartDashboard::PutNumber("front/back: ", front_back.value());
-    // frc::SmartDashboard::PutNumber("left/right: ", left_right.value());
-
-
-}
-
 #ifndef RUNNING_FRC_TESTS
-int main()
-{
+int main() {
   return frc::StartRobot<Robot>();
 }
 #endif

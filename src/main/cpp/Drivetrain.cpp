@@ -122,10 +122,6 @@ wpi::array<double, 4> Drivetrain::getDriverTemps()
 }
 void Drivetrain::debug_angles()
 {
-  auto fl_old = Module::front_left->getState();
-  auto fr_old = Module::front_right->getState();
-  auto bl_old = Module::back_left->getState();
-  auto br_old = Module::back_right->getState();
 /*
   frc::SmartDashboard::PutNumber("front left alignment", fl_old.angle.Degrees().value());
   frc::SmartDashboard::PutNumber("front right alignment", fr_old.angle.Degrees().value());

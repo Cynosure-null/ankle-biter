@@ -122,6 +122,8 @@ Trajectory::TrajDepends Trajectory::determine_desired_traj(Trajectory::HEIGHT h)
                 case Trajectory::HEIGHT::GROUND:
                     ret.desired_x = CONSTANTS::TRAJECTORY::B::LOW_X;
                     break;
+                case Trajectory::HEIGHT::SAFE:
+                break;
                 }
         }
     else
@@ -137,6 +139,8 @@ Trajectory::TrajDepends Trajectory::determine_desired_traj(Trajectory::HEIGHT h)
                 case Trajectory::HEIGHT::GROUND:
                     ret.desired_x = CONSTANTS::TRAJECTORY::R::LOW_X;
                     break;
+                case Trajectory::HEIGHT::SAFE:
+                break;
                 }
         }
     ret.desired_rot = 180_deg;
@@ -168,7 +172,6 @@ Trajectory::TrajDepends Trajectory::determine_desired_traj(Trajectory::HEIGHT h)
 
 void Trajectory::printRobotRelativeSpeeds()
 {
-    frc::ChassisSpeeds const robot_relative = m_drivetrain.getRobotRelativeSpeeds();
 
     // frc::SmartDashboard::PutNumber("Estimated VX Speed", robot_relative.vx.value());
     // frc::SmartDashboard::PutNumber("Estimated VY Speed", robot_relative.vy.value());
@@ -329,7 +332,6 @@ bool Trajectory::follow_live_traj(PathPlannerTrajectory traj)
                 << sample.pose.Y().value() << ","
                 << std::endl;*/
 
-            auto pose = m_odometry.getPose();
 
            /* std::cout << " robot: "
                 << pose.X().value() << "," 
@@ -352,7 +354,6 @@ bool Trajectory::follow_live_traj(PathPlannerTrajectory traj)
 
 void Trajectory::printFieldRelativeSpeeds()
 {
-    frc::ChassisSpeeds const real_speeds = m_odometry.getFieldRelativeSpeeds();
 
     // frc::SmartDashboard::PutNumber("Real VX Speed", real_speeds.vx.value());
     // frc::SmartDashboard::PutNumber("Real VY Speed", real_speeds.vy.value());
@@ -371,8 +372,6 @@ void Trajectory::driveToState(PathPlannerTrajectory::PathPlannerState const &sta
 
     if constexpr (debugging)
     {
-        auto const real_pose = m_odometry.getPose();
-        frc::Transform2d const holonomic_error = {real_pose, state.pose};
 /*
         frc::SmartDashboard::PutNumber("Holonomic x error", holonomic_error.X().value());
         frc::SmartDashboard::PutNumber("Holonomic y error", holonomic_error.Y().value());
