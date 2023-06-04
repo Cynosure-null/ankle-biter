@@ -1,5 +1,5 @@
-#include "SwerveModule.hpp"
-#include "ngr.hpp"
+#include "swerve/SwerveModule.h"
+#include "swerve/ngr.h"
 
 //#include <wpi/numbers>
 #include <units/angular_velocity.h>

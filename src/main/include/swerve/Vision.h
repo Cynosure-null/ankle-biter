@@ -16,8 +16,8 @@
 #include "networktables/NetworkTableValue.h"
 //#include "wpi/span.h"
 
-#include "Drivetrain.h"
-#include "Odometry.h"
+#include "swerve/Drivetrain.h"
+#include "swerve/Odometry.h"
 #include <iostream>
 #include <chrono>
 #include <thread>

@@ -1,6 +1,6 @@
 #pragma once
-#include "SwerveModule.hpp"
-#include "ngr.hpp"
+#include "swerve/SwerveModule.h"
+#include "swerve/ngr.h"
 
 
 #include <frc/kinematics/ChassisSpeeds.h>

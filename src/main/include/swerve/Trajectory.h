@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Drivetrain.h"
+#include "swerve/Drivetrain.h"
 
 #include <units/acceleration.h>
 #include <units/angle.h>
@@ -13,9 +13,9 @@
 #include "Constants.h"
 #include <functional>
 #include <cmath>
-#include "Drivetrain.h"
-#include "ngr.hpp"
-#include "Odometry.h"
+#include "swerve/Drivetrain.h"
+#include "swerve/ngr.h"
+#include "swerve/Odometry.h"
 #include <frc/DriverStation.h>
 
 #include <frc/controller/HolonomicDriveController.h>

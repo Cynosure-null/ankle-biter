@@ -4,12 +4,12 @@
 
 #pragma once
 
-#include "Drivetrain.h"
-#include "ngr.hpp"
-#include "Odometry.h"
-#include "SwerveModule.hpp"
-#include "Trajectory.hpp"
-#include "Vision.h"
+#include "swerve/Drivetrain.h"
+#include "swerve/ngr.h"
+#include "swerve/Odometry.h"
+#include "swerve/SwerveModule.h"
+#include "swerve/Trajectory.h"
+#include "swerve/Vision.h"
 #include "Buttons.h"
 
 #include <optional>
