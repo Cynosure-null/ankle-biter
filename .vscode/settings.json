@@ -16,6 +16,9 @@
   },
   "C_Cpp.default.configurationProvider": "vscode-wpilib",
   "files.associations": {
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "random": "cpp",
+    "*.tcc": "cpp",
+    "variant": "cpp"
   }
 }

@@ -22,10 +22,17 @@ class Drivetrain
 {
     public:
     Drivetrain();
+
+    /// @brief Flips the perspective of the drivetrain, so it rotates it's pose by 180 degrees.
     void flip();
+    /// @brief Resets the navx so it's current orentation becomes 0 degrees
     void zero_yaw();
+    
     void print_angle();
+
     void debug_angles();
+    /// @brief Snaps to facing away from the driverstation
+    /// @return True if the robot is facing away from the driverstation. False if not.
     bool human_player_snap();
 
     /******************************************************************/
@@ -88,13 +95,25 @@ class Drivetrain
 
     void tankDrive(double const &x_speed, double const &y_speed);
 
+    /// @brief The entrypoint into driving in a normal swerve fasion.
+    /// Should be "closest to the user". 
+    /// Calls the ChassisSpeeds method
+    /// @param xSpeed Desired horizontal speed (side to side)
+    /// @param ySpeed Desired "vertical" speed (front to back)
+    /// @param rot How fast it should rotate to the right
+    /// @param fieldRelative Driving mode, true being field centric.
     void drive(units::meters_per_second_t const &xSpeed,
                units::meters_per_second_t const &ySpeed,
                units::radians_per_second_t const &rot,
                bool const &fieldRelative);
 
+    /// @brief Takes the desired Chassis speeds, and figures out how each module should move.
+    /// @param speeds The desired speeds the robot will move in
     void drive(frc::ChassisSpeeds const &speeds);
 
+    /// @brief The final step in the drive stack. 
+    /// Moves each module to the required speed, given by the last step.
+    /// @param states How fast should each module be moving and where.
     void drive(wpi::array<frc::SwerveModuleState, 4> states);
 
     void stop();
@@ -118,6 +137,7 @@ class Drivetrain
     void manualPercentOutput(double const &percent_output);
 
     void manualVelocity(double const &velocity_ticks_per_100ms);
+
     private:
     AHRS navx { frc::SPI::Port::kMXP };
 };

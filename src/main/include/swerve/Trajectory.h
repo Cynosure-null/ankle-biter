@@ -31,34 +31,13 @@ class Trajectory
 {
     public:
     Trajectory();
-    /******************************************************************/
-    /*                  Public Function Declarations                  */
-    /******************************************************************/
+
+    // Note: a 2023 comment means it is Moonwalker Specific and can be safely removed.
+
+    //2023
     enum class HEIGHT {HIGH, MED, GROUND, SAFE};
-    enum BIG_TABLE
-        {
-            LEFT_1,
-            LEFT_2,
-            LEFT_3,
 
-            CENTER_1,
-            CENTER_2,
-            CENTER_3,
-
-            RIGHT_1,
-            RIGHT_2,
-            RIGHT_3
-    };
-    enum LCR {LEFT, CENTER, /*"co-op"*/ RIGHT};
-    enum PIECE {CONE, CUBE}; //"cube"
-
-    struct Target
-    {
-        HEIGHT height;
-        BIG_TABLE table;
-        PIECE piece;
-    };
-
+    //2023
     struct TrajDepends
     {
         units::meter_t current_x;
@@ -71,18 +50,22 @@ class Trajectory
         units::degree_t desired_rot;
     };
 
+    //2023
     TrajDepends generate_humanplayer_depends();
 
+    //2023
     TrajDepends fall_back(units::meter_t fallback_pos = 1.0_m);
 
+    //2023
     units::meter_t determine_desired_y();
 
+    //2023
     TrajDepends determine_desired_traj(HEIGHT h);
 
+    //2023
     PathPlannerTrajectory generate_live_traj(TrajDepends t);
 
-    //frc::Timer m_trajTimer;
-
+    //2023
     PathPlannerTrajectory generate_live_traj(units::meter_t current_x,
                                              units::meter_t current_y,
                                              frc::Rotation2d current_head,
@@ -93,6 +76,7 @@ class Trajectory
                                              frc::Rotation2d desired_rot
                                              );
 
+    //2023
     PathPlannerTrajectory generate_live_traj(units::meter_t current_x,
                                              units::meter_t current_y,
                                              units::degree_t current_head,
@@ -103,10 +87,17 @@ class Trajectory
                                              units::degree_t desired_rot
                                              );
 
+    /// @brief Must be called a cycle before a trajectory is followed. Should only be called once, not periodicly.
+    /// @param traj The trajectory to be followed. Does not affect the trajectory.
+    /// @param offset The time offset for when the trajectory should start. 
     void init_live_traj(PathPlannerTrajectory traj, units::second_t offset = 0.0_s);
 
+    /// @brief Makes the robot start follwing a trajectory. Must be called every cycle.
+    /// @param traj The trajectory to follow
+    /// @return True if the path is complete, false if it in progress.
     bool follow_live_traj(PathPlannerTrajectory traj);
 
+    /// @brief Converts a file into a live trajectory 
     PathPlannerTrajectory extract(std::string const &traj_dir,
                                 units::meters_per_second_t const &max_vel = Drivetrain::TRAJ_MAX_SPEED,
                                 units::meters_per_second_squared_t const &max_accl = Drivetrain::TRAJ_MAX_ACCELERATION);
@@ -116,6 +107,11 @@ class Trajectory
     void printFieldRelativeSpeeds();
 
     void driveToState(PathPlannerTrajectory::PathPlannerState const &state);
+
+    /// @brief The legacy way of following a path. Interupts the thread until the path is finished
+    /// @param traj_dir The file to load the trajectory. 
+    /// Only looks in src/main/deploy/pathplanner and .path should be ommited
+
 
     void follow(std::string const &traj_dir,
                 std::function<void(units::second_t time)> const &periodic = nullptr,

@@ -30,6 +30,10 @@ class Vision
   ~Vision();
 
   int test = 10;
+
+  /*
+  * @brief A struct representing a single frame taken from a camera, representing position.
+  */
   struct Data
   {
     double trans_x;
@@ -38,6 +42,7 @@ class Vision
     bool is_good; // Determine if data was written
 
     Data(){};
+
     Data(std::vector<double> in_vec)
     {
       if (in_vec.size() >= 6)
@@ -51,6 +56,14 @@ class Vision
 
 
   void get_raw_data(int i);
+
+  /*
+  * @brief The entrypoint into the vision system. 
+  * Should be called once every cycle to handle the entirety of the vision system. 
+  * 
+  * @return If vision updated recently. 
+  * If true, then odometry was updated last cycle, if false it is still updating.
+  */
   bool pose_loop();
 
   double standard_dev(std::vector<double> v);
@@ -59,10 +72,12 @@ private:
   Odometry m_odometry;
   Drivetrain m_drivetrain;
 
-  /// @brief Tables for data to be stored in.
+  /// @brief Tables for the left camera's data to be stored in.
   std::vector<Vision::Data> m_left_buffer{CONSTANTS::VISION::BUFFER_SIZE};
+  /// @brief Tables for the right camera's data to be stored in.
   std::vector<Vision::Data> m_right_buffer{CONSTANTS::VISION::BUFFER_SIZE};
 
+  /// @brief Data that is assured to cause the standard deviation check to fail.
   Data nonsense;
 
   /// @brief Where in the circular buffer the program is operating on
