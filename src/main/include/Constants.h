@@ -46,6 +46,21 @@ namespace CONSTANTS
             HP_AUTO
 };
 
+namespace ARM
+{
+  constexpr int LEFT_MOTOR_ID = 1;
+  constexpr int RIGHT_MOTOR_ID = 2;
+  constexpr double LOW_POS = 0.0; //CHANGEME
+  constexpr double HIGH_POS = 0.0; //CHANGEME
+}
+
+namespace ROLLER
+{
+  constexpr int LEFT_MOTOR_ID = 3;
+  constexpr int RIGHT_MOTOR_ID = 4;
+  constexpr double VELOCITY = 1.0;
+}
+
 namespace DRIVE 
 {
   constexpr units::meters_per_second_t ROBOT_MAX_SPEED =  14.533_fps;
@@ -102,56 +117,6 @@ namespace TRAJECTORY
       constexpr units::meter_t HP = 6.6_m;
     }
   }
-  namespace GRIPPAD
-  {
-    constexpr int GRIPPAD_PISTON_ID1 = 0;
-    constexpr int GRIPPAD_PISTON_ID2 = 3;
-  }
-
-  namespace WRIST
-  {
-    constexpr int WRIST_MOTOR_ID = 1;
-    constexpr double PICKUP = 0.66;
-    constexpr double HP = 0.48;
-  }
-
-  namespace ARM
-  {
-    constexpr units::second_t DELAY = 2_s;
-    constexpr int RIGHT_ARM_MOTOR_ID = 3;
-    constexpr int LEFT_ARM_MOTOR_ID = 2;
-    constexpr double ARM_ENCODER_OFFSET = 284.0; // tracks the difference from original calibration to current
-    constexpr int ARM_CANCODER_ID = 1;
-    constexpr double THRESHOLD = 17.0;
-    constexpr int HORIZONTAL_POINT = 143;
-    constexpr double MAX_AFF = 0.075;
-
-    namespace PID
-    {
-      constexpr double kP = 0.1;
-      constexpr double kI = 0.0;
-      constexpr double kD = 0.0;
-      constexpr double kIz = 0.0;
-      constexpr double kFF = 0.0;
-      constexpr double kMaxOutput = 1.0;
-      constexpr double kMinOutput = -1.0;
-      constexpr double slotIdx = 0;
-      constexpr double pidIdx = 0;
-
-    }
-
-    namespace MOTORPOSITIONS
-    {
-      // All units in degrees
-      constexpr double STORED = 36.0;
-      constexpr double LOW = 65.7;
-      constexpr double MID = 136.1;
-      constexpr double HP = 151.3;
-      constexpr double HIGH = 155.0;
-      constexpr double PICKUP = 65.8;
-      constexpr double UP = 155.0;
-    }
-  }
 
   namespace VISION {
     //Remove above warning when values found
@@ -166,15 +131,4 @@ namespace TRAJECTORY
 
   }
 
-  namespace CANDLE {
-    constexpr int CANDLE_ID = 5;
-  }
-
-  namespace GRABBER{
-    constexpr int GRABBER_PISTON_ID1 = 1;
-    constexpr int GRABBER_PISTON_ID2 = 2;
-    constexpr int TOF_CAN = 88;
-    constexpr double TOF_MAX = 250.0;
-
-  }
 }
