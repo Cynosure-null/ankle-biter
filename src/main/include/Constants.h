@@ -50,8 +50,9 @@ namespace ARM
 {
   constexpr int LEFT_MOTOR_ID = 1;
   constexpr int RIGHT_MOTOR_ID = 2;
-  constexpr double LOW_POS = 0.0; //CHANGEME
-  constexpr double HIGH_POS = 0.0; //CHANGEME
+  constexpr double STORE_POS = 0.0; //CHANGEME
+  constexpr double INTAKE_POS = 0.0; //CHANGEME
+  constexpr double SCORE_POS = 0.0; //CHANGEME
 }
 
 namespace ROLLER
