@@ -16,11 +16,12 @@
 namespace CONSTANTS 
 {
   constexpr int XBOX_PORT = 0;
+  constexpr int AUX_XBOX_PORT = 1;
   constexpr double NON_TURBO = 1;
   constexpr double DEADBAND = 0.15;
   constexpr bool DEBUGGING = true; //DO NOT USE IN COMP.
   //SLOWS DOWN EVERYTHING & MAY CAUSE WATCHDOG EXEPTIONS.
-    enum STATES 
+  enum STATES
   {
             STORED,
             LOW,
@@ -48,33 +49,37 @@ namespace CONSTANTS
 
 namespace ARM
 {
+  /// How large the increace should be for manual control.
+  constexpr double STEP = 10;
   constexpr int LEFT_MOTOR_ID = 1;
   constexpr int RIGHT_MOTOR_ID = 2;
   constexpr double STORE_POS = 0.0; //CHANGEME
   constexpr double INTAKE_POS = 0.0; //CHANGEME
   constexpr double SCORE_POS = 0.0; //CHANGEME
+/// The needed current for the motor to indicate a cube being stored
+  constexpr double LOADED_CURRENT = 10;
 }
 
-namespace ROLLER
-{
-  constexpr int LEFT_MOTOR_ID = 3;
-  constexpr int RIGHT_MOTOR_ID = 4;
-  constexpr double VELOCITY = 1.0;
-}
+  namespace ROLLER
+  {
+    constexpr int LEFT_MOTOR_ID = 3;
+    constexpr int RIGHT_MOTOR_ID = 4;
+    constexpr double VELOCITY = 1.0;
+  }
 
-namespace DRIVE 
-{
-  constexpr units::meters_per_second_t ROBOT_MAX_SPEED =  14.533_fps;
-  constexpr units::radians_per_second_t ROBOT_MAX_ANGULAR_SPEED{std::numbers::pi*1.25};
-  constexpr units::meters_per_second_t TELEOP_MAX_SPEED = ROBOT_MAX_SPEED;
-  constexpr units::radians_per_second_t TELEOP_MAX_ANGULAR_SPEED{std::numbers::pi*1.25};
-  constexpr units::meters_per_second_t TRAJ_MAX_SPEED = ROBOT_MAX_SPEED;
-  constexpr units::acceleration::meters_per_second_squared_t TRAJ_MAX_ACCELERATION = TRAJ_MAX_SPEED / 0.5_s;
-  constexpr units::radians_per_second_t TRAJ_MAX_ANGULAR_SPEED = CONSTANTS::DRIVE::ROBOT_MAX_ANGULAR_SPEED;
-  constexpr units::radians_per_second_squared_t TRAJ_MAX_ANGULAR_ACCELERATION{std::numbers::pi};
-}
+  namespace DRIVE
+  {
+    constexpr units::meters_per_second_t ROBOT_MAX_SPEED =  14.533_fps;
+    constexpr units::radians_per_second_t ROBOT_MAX_ANGULAR_SPEED{std::numbers::pi*1.25};
+    constexpr units::meters_per_second_t TELEOP_MAX_SPEED = ROBOT_MAX_SPEED;
+    constexpr units::radians_per_second_t TELEOP_MAX_ANGULAR_SPEED{std::numbers::pi*1.25};
+    constexpr units::meters_per_second_t TRAJ_MAX_SPEED = ROBOT_MAX_SPEED;
+    constexpr units::acceleration::meters_per_second_squared_t TRAJ_MAX_ACCELERATION = TRAJ_MAX_SPEED / 0.5_s;
+    constexpr units::radians_per_second_t TRAJ_MAX_ANGULAR_SPEED = CONSTANTS::DRIVE::ROBOT_MAX_ANGULAR_SPEED;
+    constexpr units::radians_per_second_squared_t TRAJ_MAX_ANGULAR_ACCELERATION{std::numbers::pi};
+  }
 
-namespace TRAJECTORY
+  namespace TRAJECTORY
   {
     constexpr auto HP_VEL = 0.4_mps;
     constexpr units::meter_t SIMPLE_FORWARDS = -22_in; //CHANGEME
@@ -131,5 +136,4 @@ namespace TRAJECTORY
     constexpr double MIN_STD_DEV_ROT = 1.0e-10; //CHANGEME
 
   }
-
 }

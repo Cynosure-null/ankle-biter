@@ -1,6 +1,7 @@
 #include "swerve/Vision.h"
 
-Vision::Vision()
+Vision::Vision(Drivetrain* drivetrain, Odometry* odometry)
+  : m_drivetrain{drivetrain}, m_odometry{odometry}
 {
   m_left_table->PutNumber("ledMode", 1); // Disable lights on boot
   m_right_table->PutNumber("ledMode", 1);
@@ -163,11 +164,10 @@ double Vision::average(std::vector<double> buffer_a,
 {
   std::vector<double> v;
 
-  #warning "MINOR: You're doing this wrong. Join buffers better"
   for (unsigned short int i = 0; i < buffer_a.size(); i++)
-    {
-      v.push_back(buffer_a[i]);
-    }
+  {
+    v.push_back(buffer_a[i]);
+  }
 
    for (unsigned short int i = 0; i < buffer_b.size(); i++)
     {
@@ -247,7 +247,7 @@ void Vision::update_pose(Data bot_pose)
   units::meter_t trans_y{bot_pose.trans_y};
   frc::Rotation2d rot{units::degree_t(bot_pose.rot_x)};
   // units::meter_t x, y, Rotation::2d theta
-  frc::Pose2d pose{trans_x, trans_y, m_drivetrain.getCCWHeading()};
+  frc::Pose2d pose{trans_x, trans_y, m_drivetrain->getCCWHeading()};
   // std::cout << "VISION RESET: " << trans_x.value() << 
   // ", " <<
   //  trans_y.value() <<
@@ -255,7 +255,7 @@ void Vision::update_pose(Data bot_pose)
   //  rot.Degrees().value() <<
   //  std::endl;
 
-  m_odometry.reset_position_from_vision(pose);
+  m_odometry->reset_position_from_vision(pose);
 }
 
 

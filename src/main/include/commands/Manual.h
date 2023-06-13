@@ -27,10 +27,10 @@ class Manual
 
     void Initialize() override;
 
-    bool IsFinished() override;
-
-
   private:
     Arm* m_arm;
+
     frc::XboxController* m_stick;
+
+    double setpoint;
 };

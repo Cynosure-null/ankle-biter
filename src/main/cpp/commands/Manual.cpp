@@ -12,23 +12,21 @@ Manual::Manual(Arm* arm, frc::XboxController* stick)
 }
 
 
-void Manual::Initialize() {}
+void Manual::Initialize()
+{
+  setpoint = m_arm->get_position();
+}
 
 void Manual::Execute()
 {
-  if(!m_arm->is_loaded())
+  m_arm->move(setpoint);
+
+  if (m_stick->GetLeftTriggerAxis() > 0.3)
   {
-    m_arm->move(CONSTANTS::ARM::INTAKE_POS);
-    m_arm->spin(-CONSTANTS::ROLLER::VELOCITY);
+    setpoint -= CONSTANTS::ARM::STEP;
   }
-  else
+  if (m_stick->GetRightTriggerAxis() > 0.3)
   {
-    m_arm->move(CONSTANTS::ARM::STORE_POS);
+    setpoint += CONSTANTS::ARM::STEP;
   }
 }
-
-bool Manual::IsFinished()
-{
-  return (m_arm->is_loaded());
-}
-

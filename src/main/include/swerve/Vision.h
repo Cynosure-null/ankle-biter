@@ -26,16 +26,16 @@
 class Vision
 {
   public:
-  Vision(/* args */);
-  ~Vision();
+    Vision(Drivetrain* drivetrain, Odometry* odometry);
+    ~Vision();
 
-  int test = 10;
+    int test = 10;
 
-  /*
-  * @brief A struct representing a single frame taken from a camera, representing position.
-  */
-  struct Data
-  {
+    /*
+     * @brief A struct representing a single frame taken from a camera, representing position.
+     */
+    struct Data
+    {
     double trans_x;
     double trans_y;
     double rot_x;
@@ -69,10 +69,10 @@ class Vision
   double standard_dev(std::vector<double> v);
 private:
 
-  Odometry m_odometry;
-  Drivetrain m_drivetrain;
+    Odometry* m_odometry;
+    Drivetrain* m_drivetrain;
 
-  /// @brief Tables for the left camera's data to be stored in.
+    /// @brief Tables for the left camera's data to be stored in.
   std::vector<Vision::Data> m_left_buffer{CONSTANTS::VISION::BUFFER_SIZE};
   /// @brief Tables for the right camera's data to be stored in.
   std::vector<Vision::Data> m_right_buffer{CONSTANTS::VISION::BUFFER_SIZE};

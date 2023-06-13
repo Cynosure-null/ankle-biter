@@ -5,7 +5,8 @@
 #include "commands/HoldMode.h"
 
 HoldMode::HoldMode(Arm* arm)
-  : m_arm{arm} {
+  : m_arm{arm}
+{
   // Register that this command requires the subsystem.
   AddRequirements(m_arm);
 }

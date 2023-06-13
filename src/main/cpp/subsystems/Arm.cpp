@@ -23,9 +23,16 @@ frc2::CommandPtr Arm::spin(double speed)
         });
 }
 
-double Arm::get_position() {}
+double Arm::get_position()
+{
+    return m_left_arm_motor.GetEncoder().GetPosition();
+}
 
-bool Arm::is_loaded() {}
+bool Arm::is_loaded()
+{
+    return (m_left_roller_motor.GetOutputCurrent() >
+            CONSTANTS::ARM::LOADED_CURRENT);
+}
 
 void Arm::Periodic() {}
 

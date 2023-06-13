@@ -28,9 +28,9 @@ frc::Field2d field2d;
 /******************************************************************/
 /*                   Public Function Definitions                  */
 /******************************************************************/
-Odometry::Odometry(){
-
-}
+Odometry::Odometry(Drivetrain* drivetrain)
+    : m_drivetrain{drivetrain}
+{}
 void Odometry::putField2d()
 {
     // frc::SmartDashboard::PutData("Odometry Field", &field2d);
@@ -38,8 +38,8 @@ void Odometry::putField2d()
 
 void Odometry::update()
 {
-    frc::Pose2d const pose = odometry.Update(m_drivetrain.getCCWHeading(),
-                                             m_drivetrain.getModulePositions());
+    frc::Pose2d const pose = odometry.Update(m_drivetrain->getCCWHeading(),
+                                             m_drivetrain->getModulePositions());
     // if constexpr (CONSTANTS::DEBUGGING)
         // frc::SmartDashboard::PutString("Odometry: ", fmt::format("Pose X: {}, Y: {}, Z (Degrees): {}\n", pose.X().value(), pose.Y().value(), pose.Rotation().Degrees().value()));
 }
@@ -73,8 +73,8 @@ frc::ChassisSpeeds const Odometry::getFieldRelativeSpeeds()
 
 void Odometry::reset_position_from_vision(const frc::Pose2d &bot_pose)
 {
-    odometry.ResetPosition(m_drivetrain.getCCWHeading(),
-                           m_drivetrain.getModulePositions(),
+    odometry.ResetPosition(m_drivetrain->getCCWHeading(),
+                           m_drivetrain->getModulePositions(),
                            bot_pose
                            );
     if constexpr (CONSTANTS::DEBUGGING)
@@ -97,17 +97,17 @@ void Odometry::reset_from_distance()
     {
         x = -7.94_m + dist;
     }
-    frc::Pose2d pose{x, y, m_drivetrain.getCCWHeading()};
+    frc::Pose2d pose{x, y, m_drivetrain->getCCWHeading()};
 
-    odometry.ResetPosition(m_drivetrain.getCCWHeading(),
-                           m_drivetrain.getModulePositions(),
+    odometry.ResetPosition(m_drivetrain->getCCWHeading(),
+                           m_drivetrain->getModulePositions(),
                            pose
                            );
 }
 
 void Odometry::resetPosition(const frc::Pose2d &bot_pose, const frc::Rotation2d &gyro_angle)
 {
-    odometry.ResetPosition(gyro_angle, m_drivetrain.getModulePositions(), bot_pose);
+    odometry.ResetPosition(gyro_angle, m_drivetrain->getModulePositions(), bot_pose);
 }
 
 frc::FieldObject2d *Odometry::getField2dObject(std::string_view name)

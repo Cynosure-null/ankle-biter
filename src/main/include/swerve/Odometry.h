@@ -20,8 +20,8 @@
 class Odometry
 {
     public:
-    Odometry();
-    void putField2d();
+        Odometry(Drivetrain* drivetrain);
+        void putField2d();
 
     [[nodiscard]] frc::Pose2d getPose();
 
@@ -38,6 +38,5 @@ class Odometry
 
     [[nodiscard]] frc::ChassisSpeeds const getFieldRelativeSpeeds();
     private:
-    Drivetrain m_drivetrain;
-    
+        Drivetrain* m_drivetrain;
 };

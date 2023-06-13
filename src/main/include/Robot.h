@@ -4,14 +4,6 @@
 
 #pragma once
 
-#include "swerve/Drivetrain.h"
-#include "swerve/ngr.h"
-#include "swerve/Odometry.h"
-#include "swerve/SwerveModule.h"
-#include "swerve/Trajectory.h"
-#include "swerve/Vision.h"
-#include "Buttons.h"
-
 #include <optional>
 
 #include <frc/TimedRobot.h>
@@ -34,14 +26,16 @@ class Robot : public frc::TimedRobot {
   void SimulationInit() override;
   void SimulationPeriodic() override;
 
-  Drivetrain m_drivetrain;
-  Odometry m_odometry;
  private:
-  frc::SendableChooser<std::string> m_chooser;
-  void swerveDrive(bool const &field_relative = true);
-  // Have it empty by default so that if testing teleop it
-  // doesn't have undefined behavior and potentially crash.
-  std::optional<frc2::CommandPtr> m_autonomousCommand;
-  
-  RobotContainer m_container;
+    frc::SendableChooser<std::string> m_chooser;
+    void swerveDrive(bool const &field_relative = true);
+    // Have it empty by default so that if testing teleop it
+    // doesn't have undefined behavior and potentially crash.
+    std::optional<frc2::CommandPtr> m_autonomousCommand;
+
+    RobotContainer m_container;
+
+    Drivetrain m_drivetrain;
+    Odometry m_odometry {&m_drivetrain};
+    Vision m_vision {&m_drivetrain, &m_odometry};
 };

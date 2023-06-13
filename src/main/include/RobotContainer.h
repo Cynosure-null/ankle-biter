@@ -4,8 +4,17 @@
 
 #pragma once
 
+#include "swerve/Drivetrain.h"
+#include "swerve/ngr.h"
+#include "swerve/Odometry.h"
+#include "swerve/SwerveModule.h"
+#include "swerve/Trajectory.h"
+#include "swerve/Vision.h"
+#include "Buttons.h"
+
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
+#include <frc/XboxController.h>
 #include "subsystems/Arm.h"
 
 #include "Constants.h"
@@ -25,15 +34,17 @@ class RobotContainer {
   frc2::CommandPtr GetAutonomousCommand();
 
  private:
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  frc2::CommandXboxController m_driver_controller{
-      CONSTANTS::XBOX_PORT};
+    // Replace with CommandPS4Controller or CommandJoystick if needed
+    frc2::CommandXboxController m_driver_controller{CONSTANTS::XBOX_PORT};
 
-  // The robot's subsystems are defined here...
+    frc::XboxController m_basic_driver_controller{CONSTANTS::AUX_XBOX_PORT};
 
-  ExampleSubsystem m_subsystem;
+    // The robot's subsystems are defined here...
 
-  Arm *m_arm;
+    ExampleSubsystem m_subsystem;
 
-  void ConfigureBindings();
+    Arm m_arm;
+
+    void ConfigureBindings();
+
 };
