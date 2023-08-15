@@ -8,6 +8,8 @@
 #include <frc2/command/CommandHelper.h>
 
 #include "subsystems/ExampleSubsystem.h"
+#include "networktables/NetworkTable.h"
+#include "frc/smartdashboard/SmartDashboard.h"
 
 /**
  * An example command that uses an example subsystem.
@@ -26,6 +28,15 @@ class ExampleCommand
    */
   explicit ExampleCommand(ExampleSubsystem* subsystem);
 
+  void Execute(); //override;
+
+  bool Initalize(); //override;
+
+  bool End(); // override;
+
  private:
+ long int i = 0;
+ int j = 0;
+ int k = 0;
   ExampleSubsystem* m_subsystem;
 };

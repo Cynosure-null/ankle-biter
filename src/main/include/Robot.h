@@ -35,7 +35,9 @@ class Robot : public frc::TimedRobot {
 
     RobotContainer m_container;
 
+#ifndef CFG_NO_DRIVEBASE
     Drivetrain m_drivetrain;
     Odometry m_odometry {&m_drivetrain};
     Vision m_vision {&m_drivetrain, &m_odometry};
+#endif
 };

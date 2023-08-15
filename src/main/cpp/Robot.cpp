@@ -24,7 +24,9 @@ void Robot::RobotPeriodic() {
  * can use it to reset any subsystem information you want to clear when the
  * robot is disabled.
  */
-void Robot::DisabledInit() {}
+void Robot::DisabledInit() {
+  //std::cout << "DISABLED! \n";
+}
 
 void Robot::DisabledPeriodic() {}
 
@@ -33,8 +35,11 @@ void Robot::DisabledPeriodic() {}
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
+  std::cout << "auto init \n";
+#ifndef CFG_NO_DRIVEBASE
   m_odometry.update();
   m_drivetrain.flip();
+#endif
  
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
@@ -53,13 +58,18 @@ void Robot::TeleopInit() {
   if (m_autonomousCommand) {
     m_autonomousCommand->Cancel();
   }
+#ifndef CFG_NO_DRIVEBASE
   m_odometry.update();
+#endif
+std::cout << "Teleop init \n";
 }
 
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+ // std::cout << "not dead yet \n";
+}
 
 /**
  * This function is called periodically during test mode.
@@ -86,22 +96,22 @@ void Robot::SimulationPeriodic() {}
 
 void Robot::RobotInit()
 {
-  // Call the inits for all subsystems here
+    // Call the inits for all subsystems here
+#ifndef CFG_NO_DRIVEBASE
   m_drivetrain.init();
   m_odometry.putField2d();
+#endif
 
   // Auto paths
 
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
-
-  m_odometry.putField2d();
-
 
   // Get choosen autonomous mode
 }
 
   void Robot::swerveDrive(bool const &field_relative)
 {
+#ifndef CFG_NO_DRIVEBASE
   const units::meters_per_second_t left_right { -frc::ApplyDeadband(BUTTON::DRIVETRAIN::LX(), CONSTANTS::DEADBAND)};
                           
   const units::meters_per_second_t front_back { -frc::ApplyDeadband(BUTTON::DRIVETRAIN::LY(), CONSTANTS::DEADBAND)};
@@ -112,8 +122,7 @@ void Robot::RobotInit()
     // frc::SmartDashboard::PutNumber("Gyro: ", m_drivetrain.getAngle().value());
     // frc::SmartDashboard::PutNumber("front/back: ", front_back.value());
     // frc::SmartDashboard::PutNumber("left/right: ", left_right.value());
-
-
+#endif
 }
 
 #ifndef RUNNING_FRC_TESTS

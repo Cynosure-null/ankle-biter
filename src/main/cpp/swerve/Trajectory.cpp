@@ -1,7 +1,6 @@
 #include "swerve/Trajectory.h"
 
-
-
+#ifndef CFG_NO_DRIVEBASE
 /******************************************************************/
 /*                        Private Variables                       */
 /******************************************************************/
@@ -444,3 +443,4 @@ void Trajectory::testHolonomic(frc::Pose2d const &target_pose, units::velocity::
 {
     m_drivetrain.drive(controller.Calculate(m_odometry.getPose(), target_pose, velocity, target_rot));
 }
+#endif

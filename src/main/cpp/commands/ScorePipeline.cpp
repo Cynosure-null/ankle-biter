@@ -15,6 +15,7 @@ void ScorePipeline::Initialize() {}
 
 void ScorePipeline::Execute()
 {
+  std::cout << "ScorePipeline.execute \n";
   if( (m_arm->get_position() >= CONSTANTS::ARM::SCORE_POS * 0.98) &&
       (m_arm->get_position() <= CONSTANTS::ARM::SCORE_POS * 1.02))
   {

@@ -1,5 +1,6 @@
 #include "swerve/Drivetrain.h"
 
+#ifndef CFG_NO_DRIVEBASE
 /******************************************************************/
 /*                        Private Variables                       */
 /******************************************************************/
@@ -359,3 +360,4 @@ void Drivetrain::manualVelocity(double const &velocity_ticks_per_100ms)
   back_left->manualVelocityContol(velocity_ticks_per_100ms);
   back_right->manualVelocityContol(velocity_ticks_per_100ms);
 }
+#endif

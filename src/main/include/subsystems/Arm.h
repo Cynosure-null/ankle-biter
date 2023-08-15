@@ -48,4 +48,10 @@ class Arm : public frc2::SubsystemBase {
 
   rev::SparkMaxPIDController m_arm_pid = m_left_arm_motor.GetPIDController();
   rev::SparkMaxPIDController m_roller_pid = m_left_roller_motor.GetPIDController();
+
+  rev::SparkMaxRelativeEncoder m_arm_encoder = m_left_arm_motor.GetEncoder();
+  rev::SparkMaxRelativeEncoder m_roller_encoder = m_left_roller_motor.GetEncoder();
+
+  CONSTANTS::PidCoeff m_arm_coeff = {1};
+  CONSTANTS::PidCoeff m_roller_coeff = {1};
 };

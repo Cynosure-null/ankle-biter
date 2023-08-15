@@ -25,6 +25,7 @@
 #include <thread>
 #include <frc/Timer.h>
 
+#ifndef CFG_NO_DRIVEBASE
 using namespace pathplanner; // PathPlanner keeps everything hidden behind 2 sets of namespaces so it's safe to remove the first layer
 
 class Trajectory
@@ -131,3 +132,4 @@ class Trajectory
     Drivetrain m_drivetrain;
     Odometry m_odometry;
 };
+#endif

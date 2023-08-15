@@ -21,31 +21,18 @@ namespace CONSTANTS
   constexpr double DEADBAND = 0.15;
   constexpr bool DEBUGGING = true; //DO NOT USE IN COMP.
   //SLOWS DOWN EVERYTHING & MAY CAUSE WATCHDOG EXEPTIONS.
-  enum STATES
+
+  struct PidCoeff
   {
-            STORED,
-            LOW,
-            MID, 
-            HP,
-            HIGH,
-            PICKUP,
-            SCORE,
-            FALLBACK,
-            FALLBACK2,
-            ABORT,
-            O_LOW,
-            O_MID,
-            O_HP,
-            O_HIGH,
-            IDLE,
-            O_OPEN,
-            O_UP,
-            O_PICKUP,
-            O_HP_PICKUP,
-            AUTO_SIMP_HIGH,
-            HP_AUTO_INIT,
-            HP_AUTO
-};
+    const double 
+    p = .0, /// Proportional. Based off distance from setpoint, most important but high values cause oscilation.
+    i = .0, /// Integral. Based off the error over time, try to avoid if possible.
+    d = .0, /// Derivative. Based off velocity from setpoint, can be used to smooth out oscilation caused by high P values.
+    ff = .0, /// Feed Forward. Provides a constant boost to the output. Used to fight gravity or similar things.
+    iz = .0, /// I Zone. A deadband (distance from zero) for when I takes effect. Try to avoid if possible.
+    min = .0, /// Minimum output for control loop.
+    max = .0;/// Maximum output for control loop.
+  };
 
 namespace ARM
 {

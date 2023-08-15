@@ -1,4 +1,7 @@
 #pragma once
+
+#ifndef CFG_NO_DRIVEBASE
+
 #include "swerve/SwerveModule.h"
 #include "swerve/ngr.h"
 
@@ -141,3 +144,5 @@ class Drivetrain
     private:
     AHRS navx { frc::SPI::Port::kMXP };
 };
+
+#endif

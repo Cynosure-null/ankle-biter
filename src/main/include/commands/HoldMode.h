@@ -16,19 +16,18 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class HoldMode
-  : public frc2::CommandHelper<frc2::CommandBase, HoldMode> {
+class HoldMode : public frc2::CommandHelper<frc2::CommandBase, HoldMode>
+{
   public:
-
-    explicit HoldMode(Arm* arm);
+    explicit HoldMode(Arm *arm);
 
     void Execute() override;
 
     void Initialize() override;
 
-    bool End();
+    void End(bool interrupted) override;
 
   private:
-    Arm* m_arm;
+    Arm *m_arm;
     double holdpoint = CONSTANTS::ARM::STORE_POS;
 };

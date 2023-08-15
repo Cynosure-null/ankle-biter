@@ -1,5 +1,7 @@
 #pragma once
 
+#ifndef CFG_NO_DRIVEBASE
+
 #include <type_traits>
 #include <array>
 
@@ -122,3 +124,4 @@ namespace ngr
                   "Error with findIf()");
 
 } // namespace ngr
+#endif

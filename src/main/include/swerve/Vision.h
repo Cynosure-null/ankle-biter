@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableInstance.h>
 #include <frc/smartdashboard/Field2d.h>
@@ -23,6 +24,7 @@
 #include <thread>
 #include <numeric>
 
+#ifndef CFG_NO_DRIVEBASE
 class Vision
 {
   public:
@@ -69,8 +71,8 @@ class Vision
   double standard_dev(std::vector<double> v);
 private:
 
-    Odometry* m_odometry;
     Drivetrain* m_drivetrain;
+    Odometry* m_odometry;
 
     /// @brief Tables for the left camera's data to be stored in.
   std::vector<Vision::Data> m_left_buffer{CONSTANTS::VISION::BUFFER_SIZE};
@@ -135,3 +137,4 @@ private:
   */
   double average(std::vector<double> v);
 };
+#endif

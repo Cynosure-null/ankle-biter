@@ -1,11 +1,17 @@
 #pragma once
 
+/// Comment below out if you want to drive
+#define CFG_NO_DRIVEBASE
+
+#ifndef CFG_NO_DRIVEBASE
 #include <frc/kinematics/SwerveModuleState.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/geometry/Translation2d.h>
 
 #include <ctre/Phoenix.h>
 #include "Constants.h"
+
+badcode
 
 class SwerveModule
 {
@@ -52,3 +58,4 @@ private:
     double const magnet_offset;
     int turner_addr;
 };
+#endif

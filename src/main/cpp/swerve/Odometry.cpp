@@ -1,5 +1,6 @@
 #include "swerve/Odometry.h"
 
+#ifndef CFG_NO_DRIVEBASE
 frc::TimeOfFlight tof_sensor{1};
 /******************************************************************/
 /*                        Private Variables                       */
@@ -114,3 +115,4 @@ frc::FieldObject2d *Odometry::getField2dObject(std::string_view name)
 {
     return field2d.GetObject(name);
 }
+#endif

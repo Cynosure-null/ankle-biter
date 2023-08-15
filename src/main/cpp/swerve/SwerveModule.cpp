@@ -5,6 +5,7 @@
 #include <units/angular_velocity.h>
 #include <iostream>
 #include <fmt/format.h>
+#ifndef CFG_NO_DRIVEBASE
 #define CAN_BUS_NAME "canivore"
 
 /******************************************************************/
@@ -162,3 +163,4 @@ void SwerveModule::manualVelocityContol(double const &velocity_ticks_per_100ms)
     driver.Set(TalonFXControlMode::Velocity, velocity_ticks_per_100ms);
     turner.Set(TalonFXControlMode::Position, 0);
 }
+#endif

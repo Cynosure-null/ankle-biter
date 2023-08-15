@@ -17,6 +17,7 @@
 #include <TimeOfFlight.h>
 #include <frc/DriverStation.h>
 
+#ifndef CFG_NO_DRIVEBASE
 class Odometry
 {
     public:
@@ -40,3 +41,4 @@ class Odometry
     private:
         Drivetrain* m_drivetrain;
 };
+#endif
