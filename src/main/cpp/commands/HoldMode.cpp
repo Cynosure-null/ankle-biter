@@ -19,9 +19,9 @@ void HoldMode::Initialize()
 
 void HoldMode::Execute()
 {
-  //std::cout << "hold.execute \n";
+  std::cout << "hold.execute \n";
   m_arm->move(holdpoint);
-  frc::SmartDashboard::PutString("cmd", "HoldMode");
+  frc::SmartDashboard::PutNumber("holdpt", holdpoint);
 }
 
 void HoldMode::End(bool interrupted)

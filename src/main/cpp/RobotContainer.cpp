@@ -40,10 +40,10 @@ void RobotContainer::ConfigureBindings()
  frc2::JoystickButton(&m_driver_controller,
  frc::XboxController::Button::kX).WhileTrue(ExampleCommand(&m_example_subsystem).ToPtr());
 */
-m_driver_controller.X().ToggleOnTrue(
-  frc2::cmd::StartEnd([&] { m_example_command.OnMethod(); },
-    [&] { m_example_command.OffMethod(); },
-    {&m_example_subsystem}));
+// m_driver_controller.X().ToggleOnTrue(
+//   frc2::cmd::StartEnd([&] { m_example_command.OnMethod(); },
+//     [&] { m_example_command.OffMethod(); },
+//     {&m_example_subsystem}));
 
   m_driver_controller.LeftBumper().ToggleOnTrue(&m_intake_pipeline);
 

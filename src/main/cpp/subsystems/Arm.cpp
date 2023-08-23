@@ -15,6 +15,9 @@ Arm::Arm() {
 
 frc2::CommandPtr Arm::move(double setpoint)
 {
+    m_arm_pid.SetReference(setpoint,
+                    rev::CANSparkMax::ControlType::kPosition);
+
         frc::SmartDashboard::PutNumber("setpoint", setpoint);
     return this->RunOnce(
         [&, setpoint] {
@@ -26,6 +29,7 @@ frc2::CommandPtr Arm::move(double setpoint)
 
 frc2::CommandPtr Arm::spin(double speed)
 {
+    m_left_roller_motor.Set(speed);
     frc::SmartDashboard::PutNumber("speed", speed);
     return this->RunOnce(
         [&] {
