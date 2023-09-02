@@ -14,9 +14,9 @@ class Arm : public frc2::SubsystemBase {
   public:
   Arm();
 
-    frc2::CommandPtr move(double setpoint);
+    void move(double setpoint);
  
-    frc2::CommandPtr spin(double speed);
+    void spin(double speed);
 
     /**
    * @return True if there is a cube in the intake, as measured by a time of flight sensor

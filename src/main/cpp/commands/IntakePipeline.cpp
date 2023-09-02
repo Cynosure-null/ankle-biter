@@ -12,10 +12,13 @@ IntakePipeline::IntakePipeline(Arm* arm)
 }
 
 
-void IntakePipeline::Initialize() {}
+void IntakePipeline::Initialize() {
+    frc::SmartDashboard::PutString("state", "inatkeinit");
+}
 
 void IntakePipeline::Execute()
 {
+    frc::SmartDashboard::PutString("state", "intake");
   frc::SmartDashboard::PutString("cmd", "IntakePipeline");
   //char buff[strlen((char[])__DBL_MAX__)]; //Probably big enough
   char* buff = (char*)malloc(sizeof(char)*32);

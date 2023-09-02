@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "commands/ScorePipeline.h"
+#include "frc/smartdashboard/SmartDashboard.h"
 
 ScorePipeline::ScorePipeline(Arm* arm)
   : m_arm{arm} {
@@ -11,11 +12,14 @@ ScorePipeline::ScorePipeline(Arm* arm)
 }
 
 
-void ScorePipeline::Initialize() {}
+void ScorePipeline::Initialize() {
+    frc::SmartDashboard::PutString("state", "scoreinit");
+}
 
 void ScorePipeline::Execute()
 {
-  std::cout << "ScorePipeline.execute \n";
+    frc::SmartDashboard::PutString("state", "score");
+  //std::cout << "ScorePipeline.execute \n";
   if( (m_arm->get_position() >= CONSTANTS::ARM::SCORE_POS * 0.98) &&
       (m_arm->get_position() <= CONSTANTS::ARM::SCORE_POS * 1.02))
   {

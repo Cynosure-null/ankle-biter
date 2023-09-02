@@ -41,10 +41,10 @@ namespace ARM
   constexpr int LEFT_MOTOR_ID = 1;
   constexpr int RIGHT_MOTOR_ID = 2;
   constexpr double STORE_POS = 0.0; //CHANGEME
-  constexpr double INTAKE_POS = 0.0; //CHANGEME
-  constexpr double SCORE_POS = 0.0; //CHANGEME
+  constexpr double INTAKE_POS = 1000.0; //CHANGEME
+  constexpr double SCORE_POS = -100.0; //CHANGEME
 /// The needed current for the motor to indicate a cube being stored
-  constexpr double LOADED_CURRENT = 10;
+  constexpr double LOADED_RPM = 10;
 }
 
   namespace ROLLER

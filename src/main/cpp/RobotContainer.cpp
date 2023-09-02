@@ -13,6 +13,9 @@ RobotContainer::RobotContainer()
 {
   m_arm.SetDefaultCommand(std::move(m_hold_mode));
   // Initialize all of your commands and subsystems here
+  m_hold_mode.SetName("Hold");
+  m_intake_pipeline.SetName("Intake");
+  m_score_pipeline.SetName("Score");
 
   // Configure the button bindings
   ConfigureBindings();
@@ -50,11 +53,13 @@ void RobotContainer::ConfigureBindings()
   m_driver_controller.RightBumper().ToggleOnTrue(&m_score_pipeline);
 
   m_driver_controller.B().ToggleOnTrue(&m_hold_mode);
+  
 
   //m_aux_controller.B().ToggleOnTrue(&m_manual);
 
   //m_aux_controller.X().ToggleOnTrue(&m_hold_mode);
 }
+
 
 frc2::CommandPtr RobotContainer::GetAutonomousCommand()
 {

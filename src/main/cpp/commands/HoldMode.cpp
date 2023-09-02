@@ -13,14 +13,16 @@ HoldMode::HoldMode(Arm *arm) : m_arm{ arm }
 
 void HoldMode::Initialize()
 {
+  frc::SmartDashboard::PutString("state", "holdinit");
   std::cout << "hold.init \n";
   holdpoint = m_arm->get_position();
 }
 
 void HoldMode::Execute()
 {
-  std::cout << "hold.execute \n";
-  m_arm->move(holdpoint);
+  frc::SmartDashboard::PutString("state", "hold");
+  m_arm->spin(.0);
+  m_arm->move(CONSTANTS::ARM::STORE_POS);
   frc::SmartDashboard::PutNumber("holdpt", holdpoint);
 }
 
